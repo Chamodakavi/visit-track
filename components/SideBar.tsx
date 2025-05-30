@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, IconButton, Tooltip, Stack } from "@mui/material";
+import { Box, IconButton, Tooltip } from "@mui/material";
 import {
   HomeRounded,
   PeopleAltRounded,

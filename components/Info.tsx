@@ -1,6 +1,6 @@
 // components/Info.tsx
 import React from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface InfoProps {
   customerName: string;
@@ -21,7 +21,6 @@ interface InfoProps {
 const Info: React.FC<InfoProps> = ({
   customerName,
   buyer,
-  createdAt,
   remarks,
   salesOptions,
   sampleCollectionTypes,

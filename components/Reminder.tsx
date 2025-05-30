@@ -21,7 +21,7 @@ import { db } from "../src/utils/firebaseConfig"; // Adjust path if needed
 
 type Note = {
   id: string;
-  note: any;
+  note: string;
   createdAt: Date;
 };
 
@@ -49,7 +49,7 @@ function Reminder() {
       (querySnapshot) => {
         const fetchedNotes:
           | ((prevState: never[]) => never[])
-          | { id: string; note: any; createdAt: any }[] = [];
+          | { id: string; note: string; createdAt: Date }[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           fetchedNotes.push({

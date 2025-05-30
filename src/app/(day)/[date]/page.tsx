@@ -6,21 +6,10 @@ import {
   Typography,
   Box,
   Fab,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Snackbar,
   Alert as MuiAlert,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import PersonIcon from "@mui/icons-material/Person";
 import dayjs from "dayjs";
 import Form from "../../../../components/Form";
 import Info from "../../../../components/Info";
@@ -28,7 +17,7 @@ import { query, where, Timestamp } from "firebase/firestore";
 
 // Firebase imports
 import { db } from "../../../utils/firebaseConfig";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const Alert = React.forwardRef(function Alert(props: any, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
