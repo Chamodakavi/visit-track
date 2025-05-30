@@ -106,7 +106,7 @@ const Form: React.FC<FormProps> = ({
 
   // Determine the 'top' position based on whether existingCustomers is populated.
   // This assumes 'existingCustomers' serves as the indicator for 'info is populated'.
-  const modalTopPosition = usa ? "20%" : "50%";
+  const modalTopPosition = usa ? "30%" : "50%";
 
   return (
     <Box
