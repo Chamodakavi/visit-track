@@ -23,18 +23,20 @@ interface FormProps {
   show: boolean;
   onClose: () => void;
   onSave: (data: any) => void;
-  existingCustomers: string[];
+  existingCustomers: string[]; // This prop indicates if existing data is "available"
   buyerOptions: string[];
   selectedDate: Date;
+  usa: boolean; // Optional height prop for customization
 }
 
 const Form: React.FC<FormProps> = ({
   show,
   onClose,
   onSave,
-  existingCustomers,
+  existingCustomers, // We'll use this to determine the position
   buyerOptions,
   selectedDate,
+  usa,
 }) => {
   const [customerName, setCustomerName] = useState("");
   const [selectedPurposes, setSelectedPurposes] = useState<string[]>([]);
@@ -90,6 +92,8 @@ const Form: React.FC<FormProps> = ({
       }, 500);
     } catch (error) {
       console.error("Error adding document: ", error);
+      // It's better to show an alert or snackbar for errors too
+      // For example: setSnackbarError(true);
       alert("Failed to save. Please try again.");
     } finally {
       setLoading(false);
@@ -98,11 +102,17 @@ const Form: React.FC<FormProps> = ({
 
   if (!show) return null;
 
+  console.log(usa);
+
+  // Determine the 'top' position based on whether existingCustomers is populated.
+  // This assumes 'existingCustomers' serves as the indicator for 'info is populated'.
+  const modalTopPosition = usa ? "20%" : "50%";
+
   return (
     <Box
       sx={{
         position: "absolute",
-        top: "20%",
+        top: modalTopPosition, // Dynamically set the top position
         left: "50%",
         transform: "translate(-50%, -50%)",
         backgroundColor: "background.paper",
@@ -128,7 +138,7 @@ const Form: React.FC<FormProps> = ({
           labelId="customer-select-label"
           value={customerName}
           label="Choose from existing"
-          onChange={(e) => setCustomerName(e.target.value)}
+          onChange={(e) => setCustomerName(e.target.value as string)} // Cast to string
         >
           <MenuItem value="">
             <em>None</em>
@@ -167,7 +177,7 @@ const Form: React.FC<FormProps> = ({
           <Select
             labelId="buyer-label"
             value={buyer}
-            onChange={(e) => setBuyer(e.target.value)}
+            onChange={(e) => setBuyer(e.target.value as string)} // Cast to string
             label="Buyer"
           >
             {buyerOptions.map((b) => (

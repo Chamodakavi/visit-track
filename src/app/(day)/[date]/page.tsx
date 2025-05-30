@@ -43,6 +43,7 @@ export default function DayPage() {
   >("info");
   const buyerOptions = ["Buyer A", "Buyer B", "Buyer C"];
   const [infoEntries, setInfoEntries] = useState<any[]>([]);
+  const [dataExist, setDataExist] = useState(false);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -85,6 +86,7 @@ export default function DayPage() {
         const querySnapshot = await getDocs(infoQuery);
         const fetchedInfo = querySnapshot.docs.map((doc) => doc.data());
         setInfoEntries(fetchedInfo);
+        setDataExist(fetchedInfo.length > 0);
       } catch (err) {
         console.error("Error fetching info data:", err);
       }
@@ -225,6 +227,7 @@ export default function DayPage() {
           existingCustomers={existingCustomers}
           buyerOptions={buyerOptions}
           selectedDate={date.toDate()}
+          usa={dataExist}
         />
       )}
 
